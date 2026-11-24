@@ -1,0 +1,213 @@
+<!doctype html><html lang="ms"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow"><style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style></head><body><title>Semakan Cikgu Sedia Sekolah</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Andika:wght@400;700&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: satu lajur kad muka (gambar + tanda semakan), seperti kertas latihan yang disemak dengan pen merah */
+:root {
+  --paper: #f6f7f9; --card: #ffffff; --ink: #1d2433; --muted: #5d6676; --line: #d9dee6;
+  --pen: #2453a6; --ok: #1e8a52; --warn: #b7791f; --bad: #c2412d; --chip: #eef2f8;
+  --display: "Andika", "Century Gothic", sans-serif; --body: "Inter", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #12161d; --card: #1b212b; --ink: #e8ecf2; --muted: #a3adbd; --line: #2d3644;
+  --pen: #7aa2ec; --ok: #4cc38a; --warn: #e0a84a; --bad: #ef7b66; --chip: #243042; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --paper: #12161d; --card: #1b212b; --ink: #e8ecf2; --muted: #a3adbd; --line: #2d3644;
+  --pen: #7aa2ec; --ok: #4cc38a; --warn: #e0a84a; --bad: #ef7b66; --chip: #243042; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font: 15px/1.55 var(--body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 20px 60px; }
+main { max-width: 980px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.15; text-wrap: balance; margin: 0; }
+h1 { font-size: 1.9rem; } h2 { font-size: 1.35rem; } h3 { font-size: 1.1rem; }
+.panel { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; display: grid; gap: 12px; min-width: 0; }
+.muted { color: var(--muted); }
+.lbl { font-size: .74rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.steps { margin: 0; padding-left: 1.2em; display: grid; gap: 4px; }
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); }
+.track { flex: 1 1 160px; height: 8px; background: var(--chip); border-radius: 99px; overflow: hidden; }
+.fill { height: 100%; width: 0; background: var(--pen); transition: width .3s; }
+.bar a { color: var(--pen); font-weight: 600; text-decoration: none; }
+label { display: grid; gap: 4px; font-weight: 500; }
+input[type=text], textarea { font: inherit; color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 9px 11px; width: 100%; }
+textarea { min-height: 72px; resize: vertical; }
+input:focus-visible, textarea:focus-visible, button:focus-visible { outline: 3px solid var(--pen); outline-offset: 2px; }
+.row { display: flex; gap: 8px; flex-wrap: wrap; }
+.grid2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
+@media (max-width: 620px) { .grid2 { grid-template-columns: minmax(0, 1fr); } }
+button { font: inherit; cursor: pointer; }
+.choice { border: 1.5px solid var(--line); background: var(--card); color: var(--ink); border-radius: 99px; padding: 7px 13px; font-weight: 500; }
+.choice[aria-pressed="true"] { background: var(--pen); border-color: var(--pen); color: #fff; }
+.st { border: 1.5px solid var(--line); background: var(--card); color: var(--ink); border-radius: 10px; padding: 9px 12px; font-weight: 600; flex: 1 1 0; min-width: 0; }
+.st.ok[aria-pressed="true"] { background: var(--ok); border-color: var(--ok); color: #fff; }
+.st.warn[aria-pressed="true"] { background: var(--warn); border-color: var(--warn); color: #1d1a12; }
+.st.bad[aria-pressed="true"] { background: var(--bad); border-color: var(--bad); color: #fff; }
+.chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.chips .choice { font-size: .85rem; padding: 5px 10px; }
+.page { display: grid; grid-template-columns: minmax(0, 44%) minmax(0, 1fr); gap: 18px; align-items: start; }
+@media (max-width: 720px) { .page { grid-template-columns: minmax(0, 1fr); } }
+.page.done { border-left: 5px solid var(--ok); } .page.fix { border-left: 5px solid var(--warn); } .page.drop { border-left: 5px solid var(--bad); }
+.shot { border: 1px solid var(--line); border-radius: 8px; background: #fff; cursor: zoom-in; width: 100%; aspect-ratio: 210 / 297; object-fit: contain; display: block; }
+.page.zoom { grid-template-columns: minmax(0, 1fr); } .page.zoom .shot { cursor: zoom-out; }
+.ctrl { display: grid; gap: 10px; min-width: 0; }
+.num { font-family: var(--display); font-weight: 700; color: var(--pen); }
+.btn { border: 0; border-radius: 10px; padding: 11px 16px; font-weight: 600; background: var(--pen); color: #fff; }
+.btn.ghost { background: transparent; color: var(--pen); border: 1.5px solid var(--pen); }
+pre.out { white-space: pre-wrap; word-break: break-word; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 12px; max-height: 320px; overflow: auto; font-size: .82rem; margin: 0; }
+.saved { color: var(--ok); font-weight: 600; }
+@media (prefers-reduced-motion: reduce) { .fill { transition: none; } }
+</style>
+
+<main>
+  <section class="panel">
+    <span class="lbl">Semakan cikgu · versi uji v0.1</span>
+    <h1>Pek Sedia Sekolah: Baca, Tulis, Kira</h1>
+    <p class="muted" style="margin:0">Pek latihan di rumah untuk anak 5–7 tahun (dicadangkan) yang akan masuk Tahun 1. Kami minta pandangan anda sebagai orang yang pernah mengajar sekolah rendah.</p>
+    <ol class="steps">
+      <li>Tengok setiap muka. Tekan gambar untuk besarkan.</li>
+      <li>Pilih <b>Ok</b>, <b>Perlu baiki</b> atau <b>Buang</b>. Tanda sebab kalau perlu, dan tulis komen ringkas.</li>
+      <li>Jawab soalan akhir, kemudian tekan <b>Salin</b> dan tampal dalam WhatsApp kepada pembuat pek.</li>
+    </ol>
+    <p class="muted" style="margin:0">Lebih kurang 30–45 minit. Jawapan disimpan dalam pelayar ini, jadi anda boleh berhenti dan sambung kemudian pada telefon atau komputer yang sama.</p>
+  </section>
+
+  <section class="panel">
+    <h2>Tentang anda</h2>
+    <div class="grid2">
+      <label>Nama (pilihan)<input type="text" id="nama" placeholder="Boleh kosongkan"></label>
+      <label>Pengalaman mengajar<input type="text" id="pengalaman" placeholder="Contoh: intern 3 bulan, Tahun 2, BM"></label>
+    </div>
+  </section>
+
+  <div class="bar" role="status"><span id="prog">0 / 0 muka disemak</span><div class="track"><div class="fill" id="fill"></div></div><a href="#akhir">Soalan akhir</a></div>
+
+  <div id="pages" style="display:grid;grid-template-columns:minmax(0,1fr);gap:14px"></div>
+
+  <section class="panel" id="akhir">
+    <h2>Soalan akhir</h2>
+    <div class="grid2" id="final"></div>
+  </section>
+
+  <section class="panel">
+    <h2>Hantar semakan</h2>
+    <p class="muted" style="margin:0">Tekan <b>Salin</b>, buka WhatsApp, dan tampal kepada pembuat pek. Tiada apa-apa dihantar secara automatik.</p>
+    <div class="row"><button class="btn" type="button" id="copy">Salin semakan</button><span id="copyMsg" class="muted"></span></div>
+    <pre class="out" id="out" tabindex="0"></pre>
+    <div class="row"><button class="btn ghost" type="button" id="reset">Padam semua jawapan</button><span id="resetMsg" class="muted"></span></div>
+  </section>
+</main>
+
+<script>
+const PAGES = [{"n": 1, "tajuk": "Kulit", "img": "muka/m01.jpg"}, {"n": 2, "tajuk": "Panduan Ibu Bapa", "img": "muka/m02.jpg"}, {"n": 3, "tajuk": "Senarai Semak & Rekod Kemajuan", "img": "muka/m03.jpg"}, {"n": 4, "tajuk": "Huruf Vokal: a e i o u", "img": "muka/m04.jpg"}, {"n": 5, "tajuk": "Huruf Kecil a hingga m", "img": "muka/m05.jpg"}, {"n": 6, "tajuk": "Huruf Kecil n hingga z", "img": "muka/m06.jpg"}, {"n": 7, "tajuk": "Huruf Besar & Huruf Kecil", "img": "muka/m07.jpg"}, {"n": 8, "tajuk": "Bunyi Awal", "img": "muka/m08.jpg"}, {"n": 9, "tajuk": "Suku Kata: ba bi bu bo", "img": "muka/m09.jpg"}, {"n": 10, "tajuk": "Jadual Suku Kata", "img": "muka/m10.jpg"}, {"n": 11, "tajuk": "Gabung Suku Kata", "img": "muka/m11.jpg"}, {"n": 12, "tajuk": "Suku Kata Yang Hilang", "img": "muka/m12.jpg"}, {"n": 13, "tajuk": "Baca & Padankan", "img": "muka/m13.jpg"}, {"n": 14, "tajuk": "Surih Perkataan", "img": "muka/m14.jpg"}, {"n": 15, "tajuk": "Salin Perkataan", "img": "muka/m15.jpg"}, {"n": 16, "tajuk": "Ayat Pertama", "img": "muka/m16.jpg"}, {"n": 17, "tajuk": "Kira & Bulatkan", "img": "muka/m17.jpg"}, {"n": 18, "tajuk": "Nombor 1 hingga 10", "img": "muka/m18.jpg"}, {"n": 19, "tajuk": "Nombor 11 hingga 20", "img": "muka/m19.jpg"}, {"n": 20, "tajuk": "Nombor Yang Hilang", "img": "muka/m20.jpg"}, {"n": 21, "tajuk": "Mana Lebih Banyak?", "img": "muka/m21.jpg"}, {"n": 22, "tajuk": "Tambah", "img": "muka/m22.jpg"}, {"n": 23, "tajuk": "Tolak", "img": "muka/m23.jpg"}, {"n": 24, "tajuk": "Sijil", "img": "muka/m24.jpg"}, {"n": 25, "tajuk": "Kunci Jawapan", "img": "muka/m25.jpg"}];
+const KEY = "semakan-cikgu-sedia-sekolah-v01";
+const TAGS = ["Terlalu mudah", "Terlalu susah", "Arahan tak jelas", "Urutan tak sesuai", "Gambar mengelirukan", "Ejaan / fakta salah", "Garis / tulisan tak sesuai"];
+const FINAL = [
+  { id: "urutan", q: "Urutan keseluruhan (huruf → suku kata → perkataan → ayat; nombor → tambah → tolak)", type: "one", opts: ["1 Tak sesuai", "2", "3", "4", "5 Sangat sesuai"] },
+  { id: "sesuai", q: "Sesuai untuk siapa? (boleh pilih lebih dari satu)", type: "many", opts: ["5 tahun", "6 tahun", "7 tahun (Tahun 1)", "Tahun 2–3 yang lemah membaca"] },
+  { id: "selari", q: "Selari dengan cara cikgu mengajar di sekolah?", type: "one", opts: ["Ya", "Sebahagian", "Tidak"] },
+  { id: "selari_nota", q: "Kalau sebahagian / tidak, apa yang berbeza?", type: "text" },
+  { id: "tambah", q: "Perkara paling penting yang patut ditambah", type: "text" },
+  { id: "buang", q: "Perkara yang patut dibuang atau diringkaskan", type: "text" },
+  { id: "harga", q: "Harga yang anda rasa berpatutan untuk ibu bapa", type: "one", opts: ["RM9", "RM15", "RM19", "RM25", "Lebih"] },
+  { id: "kongsi", q: "Boleh komen anda dikongsi tanpa nama di halaman jualan (contoh: “bekas guru sekolah rendah”)?", type: "one", opts: ["Ya", "Tidak"] },
+];
+const $ = id => document.getElementById(id);
+let S = { nama: "", pengalaman: "", pages: {}, final: {} };
+try { const raw = localStorage.getItem(KEY); if (raw) S = Object.assign(S, JSON.parse(raw)); } catch (e) {}
+let saveT;
+function save() { clearTimeout(saveT); saveT = setTimeout(() => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }, 250); render(); }
+function pg(n) { return S.pages[n] || (S.pages[n] = { st: "", tags: [], kom: "" }); }
+
+function pressGroup(btns, on) { btns.forEach(b => b.setAttribute("aria-pressed", String(b === on))); }
+
+function buildPages() {
+  const wrap = $("pages");
+  PAGES.forEach(p => {
+    const d = pg(p.n);
+    const sec = document.createElement("section"); sec.className = "panel page"; sec.id = "m" + p.n;
+    const img = document.createElement("img"); img.className = "shot"; img.src = p.img; img.alt = "Muka " + p.n + ": " + p.tajuk; img.loading = "lazy";
+    img.onclick = () => sec.classList.toggle("zoom");
+    const c = document.createElement("div"); c.className = "ctrl";
+    const h = document.createElement("h3"); h.innerHTML = '<span class="num">Muka ' + p.n + "</span> · "; h.append(document.createTextNode(p.tajuk));
+    const sts = document.createElement("div"); sts.className = "row";
+    const defs = [["ok", "✓ Ok"], ["warn", "Perlu baiki"], ["bad", "Buang"]];
+    const sb = defs.map(([k, t]) => { const b = document.createElement("button"); b.type = "button"; b.className = "st " + k; b.textContent = t; b.setAttribute("aria-pressed", String(d.st === k)); b.dataset.k = k; return b; });
+    sb.forEach(b => { b.onclick = () => { d.st = d.st === b.dataset.k ? "" : b.dataset.k; pressGroup(sb, d.st ? b : null); save(); }; sts.append(b); });
+    const tl = document.createElement("span"); tl.className = "lbl"; tl.textContent = "Sebab (pilihan)";
+    const chips = document.createElement("div"); chips.className = "chips";
+    TAGS.forEach(t => { const b = document.createElement("button"); b.type = "button"; b.className = "choice"; b.textContent = t; b.setAttribute("aria-pressed", String(d.tags.includes(t)));
+      b.onclick = () => { const i = d.tags.indexOf(t); if (i >= 0) d.tags.splice(i, 1); else d.tags.push(t); b.setAttribute("aria-pressed", String(i < 0)); save(); }; chips.append(b); });
+    const ta = document.createElement("textarea"); ta.id = "kom" + p.n; ta.placeholder = "Komen (contoh: arahan ni budak tak faham; tukar perkataan 'rusa')"; ta.value = d.kom;
+    ta.oninput = () => { d.kom = ta.value; save(); };
+    const lab = document.createElement("label"); lab.append("Komen", ta);
+    c.append(h, sts, tl, chips, lab);
+    sec.append(img, c); wrap.append(sec);
+  });
+}
+
+function buildFinal() {
+  const box = $("final");
+  FINAL.forEach(f => {
+    const w = document.createElement("div"); w.style.display = "grid"; w.style.gap = "6px";
+    if (f.type === "text") w.style.gridColumn = "1 / -1";
+    const q = document.createElement("span"); q.style.fontWeight = "600"; q.textContent = f.q; w.append(q);
+    if (f.type === "text") {
+      const ta = document.createElement("textarea"); ta.id = "f_" + f.id; ta.value = S.final[f.id] || ""; ta.oninput = () => { S.final[f.id] = ta.value; save(); }; w.append(ta);
+    } else {
+      const row = document.createElement("div"); row.className = "row";
+      const cur = S.final[f.id] || (f.type === "many" ? [] : "");
+      const bs = f.opts.map(o => { const b = document.createElement("button"); b.type = "button"; b.className = "choice"; b.textContent = o;
+        b.setAttribute("aria-pressed", String(f.type === "many" ? cur.includes(o) : cur === o)); return b; });
+      bs.forEach(b => { b.onclick = () => {
+        if (f.type === "many") { const a = S.final[f.id] || (S.final[f.id] = []); const i = a.indexOf(b.textContent); if (i >= 0) a.splice(i, 1); else a.push(b.textContent); b.setAttribute("aria-pressed", String(i < 0)); }
+        else { S.final[f.id] = S.final[f.id] === b.textContent ? "" : b.textContent; pressGroup(bs, S.final[f.id] ? b : null); }
+        save(); }; row.append(b); });
+      w.append(row);
+    }
+    box.append(w);
+  });
+}
+
+function text() {
+  const L = ["SEMAKAN-CIKGU Sedia Sekolah v0.1", "Penyemak: " + (S.nama || "(tanpa nama)") + " | Pengalaman: " + (S.pengalaman || "-")];
+  const done = PAGES.filter(p => pg(p.n).st).length;
+  L.push("Disemak: " + done + "/" + PAGES.length + " muka", "");
+  const name = { ok: "OK", warn: "PERLU BAIKI", bad: "BUANG" };
+  PAGES.forEach(p => { const d = pg(p.n); if (!d.st && !d.kom && !d.tags.length) return;
+    L.push("M" + p.n + " " + p.tajuk + ": " + (name[d.st] || "belum pilih") + (d.tags.length ? " [" + d.tags.join(", ") + "]" : "") + (d.kom ? " — " + d.kom.trim() : "")); });
+  const belum = PAGES.filter(p => !pg(p.n).st).map(p => p.n);
+  if (belum.length) L.push("Belum disemak: muka " + belum.join(", "));
+  L.push("", "SOALAN AKHIR");
+  FINAL.forEach(f => { const v = S.final[f.id]; const s = Array.isArray(v) ? v.join(", ") : (v || "").trim(); L.push("- " + f.q + ": " + (s || "-")); });
+  return L.join("\n");
+}
+
+function render() {
+  const done = PAGES.filter(p => pg(p.n).st).length;
+  $("prog").textContent = done + " / " + PAGES.length + " muka disemak";
+  $("fill").style.width = (PAGES.length ? 100 * done / PAGES.length : 0) + "%";
+  PAGES.forEach(p => { const el = $("m" + p.n); if (!el) return; const st = pg(p.n).st;
+    el.classList.toggle("done", st === "ok"); el.classList.toggle("fix", st === "warn"); el.classList.toggle("drop", st === "bad"); });
+  $("out").textContent = text();
+}
+
+$("nama").value = S.nama; $("pengalaman").value = S.pengalaman;
+$("nama").oninput = e => { S.nama = e.target.value; save(); };
+$("pengalaman").oninput = e => { S.pengalaman = e.target.value; save(); };
+$("copy").onclick = () => {
+  const t = text();
+  const ok = () => { $("copyMsg").textContent = "Disalin. Sekarang tampal dalam WhatsApp."; $("copyMsg").className = "saved"; };
+  const fb = () => { const r = document.createRange(); r.selectNodeContents($("out")); const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+    $("copyMsg").textContent = "Teks dah dipilih. Tekan lama dan pilih Copy."; $("copyMsg").className = "muted"; };
+  try { navigator.clipboard.writeText(t).then(ok, fb); } catch (e) { fb(); }
+};
+$("reset").onclick = () => {
+  const b = $("reset");
+  if (!b.dataset.armed) { b.dataset.armed = "1"; b.textContent = "Tekan sekali lagi untuk padam (pastikan dah disalin)"; return; }
+  S = { nama: "", pengalaman: "", pages: {}, final: {} }; try { localStorage.removeItem(KEY); } catch (e) {}
+  location.reload();
+};
+buildPages(); buildFinal(); render();
+</script>
+</body></html>
