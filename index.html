@@ -67,7 +67,7 @@ pre.out { white-space: pre-wrap; word-break: break-word; background: var(--paper
     <ol class="steps">
       <li>Ini <b>8 muka sampel</b> daripada 27 muka dalam pek penuh. Tekan gambar untuk besarkan.</li>
       <li>Pilih <b>Ok</b>, <b>Perlu baiki</b> atau <b>Buang</b>. Tanda sebab kalau perlu, dan tulis komen ringkas.</li>
-      <li>Jawab soalan akhir, kemudian tekan <b>Salin</b> dan tampal dalam WhatsApp kepada pembuat pek.</li>
+      <li>Jawab soalan akhir, kemudian tekan <b>Hantar semakan</b>. Siap.</li>
     </ol>
     <p class="muted" style="margin:0">Lebih kurang 5–10 minit. Jawapan disimpan dalam pelayar ini, jadi anda boleh berhenti dan sambung kemudian pada telefon atau komputer yang sama.</p>
   </section>
@@ -91,8 +91,9 @@ pre.out { white-space: pre-wrap; word-break: break-word; background: var(--paper
 
   <section class="panel">
     <h2>Hantar semakan</h2>
-    <p class="muted" style="margin:0">Tekan <b>Salin</b>, buka WhatsApp, dan tampal kepada pembuat pek. Tiada apa-apa dihantar secara automatik.</p>
-    <div class="row"><button class="btn" type="button" id="copy">Salin semakan</button><span id="copyMsg" class="muted"></span></div>
+    <p class="muted" style="margin:0">Tekan <b>Hantar semakan</b>. Semakan anda terus sampai kepada pembuat pek melalui Google Form. Tiada e-mel atau nombor telefon dikumpul.</p>
+    <div class="row"><button class="btn" type="button" id="send">Hantar semakan</button><span id="sendMsg" class="muted"></span></div>
+    <div class="row"><button class="btn ghost" type="button" id="copy">Salin teks (pilihan)</button><span id="copyMsg" class="muted"></span></div>
     <pre class="out" id="out" tabindex="0"></pre>
     <div class="row"><button class="btn ghost" type="button" id="reset">Padam semua jawapan</button><span id="resetMsg" class="muted"></span></div>
   </section>
@@ -207,6 +208,20 @@ $("reset").onclick = () => {
   if (!b.dataset.armed) { b.dataset.armed = "1"; b.textContent = "Tekan sekali lagi untuk padam (pastikan dah disalin)"; return; }
   S = { nama: "", pengalaman: "", pages: {}, final: {} }; try { localStorage.removeItem(KEY); } catch (e) {}
   location.reload();
+};
+const FORM = "https://docs.google.com/forms/d/e/1FAIpQLScuGvjj4N9gOUl4umBoEbqUIZKjL6Xkjv0IJ3rKPYpi6X7MwA/formResponse", ENTRY = "entry.1526079545";
+$("send").onclick = async () => {
+  const b = $("send"); const done = PAGES.filter(p => pg(p.n).st).length;
+  if (!done && !Object.keys(S.final).length) { $("sendMsg").textContent = "Pilih sekurang-kurangnya satu Ok / Perlu baiki / Buang dahulu."; return; }
+  b.disabled = true; $("sendMsg").textContent = "Menghantar…"; $("sendMsg").className = "muted";
+  try {
+    await fetch(FORM, { method: "POST", mode: "no-cors", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: new URLSearchParams({ [ENTRY]: text() }) });
+    $("sendMsg").textContent = "Terima kasih! Semakan anda dah dihantar."; $("sendMsg").className = "saved";
+    try { localStorage.setItem(KEY + "-sent", "1"); } catch (e) {}
+    setTimeout(() => { b.disabled = false; b.textContent = "Hantar semula (jika ada ubah)"; }, 4000);
+  } catch (e) {
+    b.disabled = false; $("sendMsg").textContent = "Tak dapat hantar. Semak internet dan cuba lagi."; $("sendMsg").className = "muted";
+  }
 };
 buildPages(); buildFinal(); render();
 </script>
