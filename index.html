@@ -61,7 +61,7 @@ pre.out { white-space: pre-wrap; word-break: break-word; background: var(--paper
 
 <main>
   <section class="panel">
-    <span class="lbl">Semakan cikgu · versi uji v0.1</span>
+    <span class="lbl">Semakan · versi uji v0.3</span>
     <h1>Pek Sedia Sekolah: Baca, Tulis, Kira</h1>
     <p class="muted" style="margin:0">Pek latihan di rumah untuk anak 5–7 tahun (dicadangkan) yang akan masuk Tahun 1. Kami minta pandangan anda sebagai orang yang pernah mengajar sekolah rendah.</p>
     <ol class="steps">
@@ -99,8 +99,8 @@ pre.out { white-space: pre-wrap; word-break: break-word; background: var(--paper
 </main>
 
 <script>
-const PAGES = [{"n": 1, "tajuk": "Kulit", "img": "muka/m01.jpg"}, {"n": 2, "tajuk": "Panduan Ibu Bapa", "img": "muka/m02.jpg"}, {"n": 3, "tajuk": "Senarai Semak & Rekod Kemajuan", "img": "muka/m03.jpg"}, {"n": 4, "tajuk": "Huruf Vokal: a e i o u", "img": "muka/m04.jpg"}, {"n": 5, "tajuk": "Huruf Kecil a hingga m", "img": "muka/m05.jpg"}, {"n": 6, "tajuk": "Huruf Kecil n hingga z", "img": "muka/m06.jpg"}, {"n": 7, "tajuk": "Huruf Besar & Huruf Kecil", "img": "muka/m07.jpg"}, {"n": 8, "tajuk": "Bunyi Awal", "img": "muka/m08.jpg"}, {"n": 9, "tajuk": "Suku Kata: ba bi bu bo", "img": "muka/m09.jpg"}, {"n": 10, "tajuk": "Jadual Suku Kata", "img": "muka/m10.jpg"}, {"n": 11, "tajuk": "Gabung Suku Kata", "img": "muka/m11.jpg"}, {"n": 12, "tajuk": "Suku Kata Yang Hilang", "img": "muka/m12.jpg"}, {"n": 13, "tajuk": "Baca & Padankan", "img": "muka/m13.jpg"}, {"n": 14, "tajuk": "Surih Perkataan", "img": "muka/m14.jpg"}, {"n": 15, "tajuk": "Salin Perkataan", "img": "muka/m15.jpg"}, {"n": 16, "tajuk": "Ayat Pertama", "img": "muka/m16.jpg"}, {"n": 17, "tajuk": "Kira & Bulatkan", "img": "muka/m17.jpg"}, {"n": 18, "tajuk": "Nombor 1 hingga 10", "img": "muka/m18.jpg"}, {"n": 19, "tajuk": "Nombor 11 hingga 20", "img": "muka/m19.jpg"}, {"n": 20, "tajuk": "Nombor Yang Hilang", "img": "muka/m20.jpg"}, {"n": 21, "tajuk": "Mana Lebih Banyak?", "img": "muka/m21.jpg"}, {"n": 22, "tajuk": "Tambah", "img": "muka/m22.jpg"}, {"n": 23, "tajuk": "Tolak", "img": "muka/m23.jpg"}, {"n": 24, "tajuk": "Sijil", "img": "muka/m24.jpg"}, {"n": 25, "tajuk": "Kunci Jawapan", "img": "muka/m25.jpg"}];
-const KEY = "semakan-cikgu-sedia-sekolah-v01";
+const PAGES = [{"n": 1, "tajuk": "Kulit", "img": "muka/m01.jpg"}, {"n": 2, "tajuk": "Panduan Ibu Bapa", "img": "muka/m02.jpg"}, {"n": 3, "tajuk": "Senarai Semak & Rekod Kemajuan", "img": "muka/m03.jpg"}, {"n": 4, "tajuk": "Huruf Vokal: a e i o u", "img": "muka/m04.jpg"}, {"n": 5, "tajuk": "Huruf Kecil a hingga m", "img": "muka/m05.jpg"}, {"n": 6, "tajuk": "Huruf Kecil n hingga z", "img": "muka/m06.jpg"}, {"n": 7, "tajuk": "Huruf Besar & Huruf Kecil", "img": "muka/m07.jpg"}, {"n": 8, "tajuk": "Bunyi Awal", "img": "muka/m08.jpg"}, {"n": 9, "tajuk": "Suku Kata: ba bi bu bo", "img": "muka/m09.jpg"}, {"n": 10, "tajuk": "Jadual Suku Kata", "img": "muka/m10.jpg"}, {"n": 11, "tajuk": "Gabung Suku Kata", "img": "muka/m11.jpg"}, {"n": 12, "tajuk": "Suku Kata Yang Hilang", "img": "muka/m12.jpg"}, {"n": 13, "tajuk": "Baca & Padankan", "img": "muka/m13.jpg"}, {"n": 14, "tajuk": "Surih Perkataan", "img": "muka/m14.jpg"}, {"n": 15, "tajuk": "Salin Perkataan", "img": "muka/m15.jpg"}, {"n": 16, "tajuk": "Ayat Pertama", "img": "muka/m16.jpg"}, {"n": 17, "tajuk": "Kira & Bulatkan", "img": "muka/m17.jpg"}, {"n": 18, "tajuk": "Nombor 1 hingga 10", "img": "muka/m18.jpg"}, {"n": 19, "tajuk": "Nombor 11 hingga 20", "img": "muka/m19.jpg"}, {"n": 20, "tajuk": "Nombor Yang Hilang", "img": "muka/m20.jpg"}, {"n": 21, "tajuk": "Mana Lebih Banyak?", "img": "muka/m21.jpg"}, {"n": 22, "tajuk": "Tambah", "img": "muka/m22.jpg"}, {"n": 23, "tajuk": "Tolak", "img": "muka/m23.jpg"}, {"n": 24, "tajuk": "Sijil", "img": "muka/m24.jpg"}, {"n": 25, "tajuk": "Kunci Jawapan", "img": "muka/m25.jpg"}, {"n": 26, "tajuk": "Poster Abjad", "img": "muka/m26.jpg"}, {"n": 27, "tajuk": "Poster Nombor 1 hingga 20", "img": "muka/m27.jpg"}];
+const KEY = "semakan-cikgu-sedia-sekolah-v03";
 const TAGS = ["Terlalu mudah", "Terlalu susah", "Arahan tak jelas", "Urutan tak sesuai", "Gambar mengelirukan", "Ejaan / fakta salah", "Garis / tulisan tak sesuai"];
 const FINAL = [
   { id: "urutan", q: "Urutan keseluruhan (huruf → suku kata → perkataan → ayat; nombor → tambah → tolak)", type: "one", opts: ["1 Tak sesuai", "2", "3", "4", "5 Sangat sesuai"] },
@@ -110,7 +110,7 @@ const FINAL = [
   { id: "tambah", q: "Perkara paling penting yang patut ditambah", type: "text" },
   { id: "buang", q: "Perkara yang patut dibuang atau diringkaskan", type: "text" },
   { id: "harga", q: "Harga yang anda rasa berpatutan untuk ibu bapa", type: "one", opts: ["RM9", "RM15", "RM19", "RM25", "Lebih"] },
-  { id: "kongsi", q: "Boleh komen anda dikongsi tanpa nama di halaman jualan (contoh: “bekas guru sekolah rendah”)?", type: "one", opts: ["Ya", "Tidak"] },
+  { id: "kongsi", q: "Boleh komen anda dikongsi tanpa nama di halaman jualan (contoh: “pernah mengajar di tadika” atau “ibu kepada anak 6 tahun”)?", type: "one", opts: ["Ya", "Tidak"] },
 ];
 const $ = id => document.getElementById(id);
 let S = { nama: "", pengalaman: "", pages: {}, final: {} };
@@ -170,7 +170,7 @@ function buildFinal() {
 }
 
 function text() {
-  const L = ["SEMAKAN-CIKGU Sedia Sekolah v0.1", "Penyemak: " + (S.nama || "(tanpa nama)") + " | Pengalaman: " + (S.pengalaman || "-")];
+  const L = ["SEMAKAN-CIKGU Sedia Sekolah v0.3", "Penyemak: " + (S.nama || "(tanpa nama)") + " | Pengalaman: " + (S.pengalaman || "-")];
   const done = PAGES.filter(p => pg(p.n).st).length;
   L.push("Disemak: " + done + "/" + PAGES.length + " muka", "");
   const name = { ok: "OK", warn: "PERLU BAIKI", bad: "BUANG" };
